@@ -1,7 +1,13 @@
 FROM tomcat:8.0-alpine
+RUN mkdir -p /home/java_app
+WORKDIR /home/java_app
+COPY . /home/java_app
 
-COPY target/*.war /usr/local/tomcat/webapps/
+ 
 
 EXPOSE 8080
+ADD target/*.war /usr/local/tomcat/webapps/
 
-ENTRYPOINT ["sh", "/usr/local/tomcat/bin/startup.sh"]
+ 
+
+CMD [ "catalina.sh", "run" ]
